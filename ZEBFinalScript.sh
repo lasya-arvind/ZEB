@@ -5,7 +5,7 @@ ffmpeg -i input1.mp4 -s 1280x720 -c:a copy input11.mp4
 ffmpeg -i input2.mp4 -s 1280x720 -c:a copy input22.mp4
 
 #Put the videos side by side using hstack
-ffmpeg -i input11.mp4 -i input22.mp4 -filter_complex hstack Composite.mp4
+ffmpeg -i input11.mp4 -i input22.mp4 -filter_complex hstack -vsync 0 Composite.mp4
 
 #Remove the background of the video (and make it transparent)
 ffmpeg -i Composite.mp4 -vf "chromakey=0x00FF00:0.1:0.2" -c copy -c:v png Composite2.mov
