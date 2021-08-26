@@ -11,7 +11,7 @@ ffmpeg -i input11.mp4 -i input22.mp4 -filter_complex hstack -vsync 0 Composite.m
 ffmpeg -i Composite.mp4 -vf "chromakey=0x00FF00:0.1:0.2" -c copy -c:v png Composite2.mov
 
 #Split the composite video into its frames
-ffmpeg -i Composite2.mov -r 1 -f image2 image-%3d.png
+ffmpeg -i Composite2.mov -r 25 -f image2 image-%3d.png
 
 #Overlay the frames on top of a background image
 ffmpeg -i Background.png -i image-%03d.png -filter_complex "overlay" Final.mov
