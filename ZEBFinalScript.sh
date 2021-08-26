@@ -13,7 +13,10 @@ ffmpeg -i Composite.mp4 -vf "chromakey=0x00FF00:0.1:0.2" -c copy -c:v png Compos
 #Split the composite video into its frames
 ffmpeg -i Composite2.mov -r 25 -f image2 image-%3d.png
 
+#Match the resolution of the background image to the composite video
+ffmpeg -i Background.jpg -s 2560x720 -c:a copy Background2.jpg
+
 #Overlay the frames on top of a background image
-ffmpeg -i Background.png -i image-%03d.png -filter_complex "overlay" Final.mov
+ffmpeg -i Background2.jpg -i image-%03d.png -filter_complex "overlay" Final.mov
 
 #Delete the intermediate files
